@@ -1,8 +1,8 @@
 import React from "react"
-import Modal from 'react-modal'
+import Modal from "react-modal"
 import { NavLink } from "react-router-dom"
 import Search from "./Search"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Item = ({ item }) =>
   <li className="item">
@@ -20,6 +20,19 @@ const Header = (props) => {
   this.state = {
     items: JSON.parse(localStorage.getItem("cart")) || [] 
   }
+
+if (this.state.items.length !== 0) {
+let partialTotal = []
+const calculatingTotal = this.state.items.map((item) => {
+  partialTotal.push(parseInt(item.totalPrice.toFixed(2)))
+  return partialTotal
+})
+
+var finalTotal = calculatingTotal[0].reduce((acum, val) => acum + val).toFixed(2)
+
+} else {
+  finalTotal = 0;
+}
 
   return (
     <React.Fragment>
@@ -46,12 +59,8 @@ const Header = (props) => {
               })
             }
           </ul>
-          <p className="cart-final-total">TOTAL DA COMPRA: R$ {this.state.items.map((item) => {
-              let totGeral = 0;
-              totGeral += item.totalPrice.toFixed(2);
-              return totGeral
-              })
-            }
+          <p className="cart-final-total">TOTAL DA COMPRA: R$ {finalTotal}
+          
           </p>
           <button className="cart-buy-button">COMPRAR</button>
         </div>

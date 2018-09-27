@@ -1,5 +1,5 @@
-import React from 'react'
-import Modal from 'react-modal'
+import React from "react"
+import Modal from "react-modal"
 
 class Details extends React.Component {
 
@@ -97,6 +97,11 @@ class Details extends React.Component {
     }
 
     let cart = JSON.parse(localStorage.getItem("cart"))
+    cart.forEach((el, index) => {
+      if(el.id === item.id) {
+        cart.splice(index, 1)
+      }
+    })
     cart.push(item) 
     localStorage.setItem("cart", JSON.stringify(cart)) 
   }

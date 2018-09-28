@@ -59,9 +59,7 @@ var finalTotal = calculatingTotal[0].reduce((acum, val) => acum + val).toFixed(2
               })
             }
           </ul>
-          <p className="cart-final-total">TOTAL DA COMPRA: R$ {finalTotal}
-          
-          </p>
+          <p className="cart-final-total">TOTAL DA COMPRA: R$ {finalTotal}</p>
           <button className="cart-buy-button">COMPRAR</button>
         </div>
       </Modal>
@@ -69,4 +67,4 @@ var finalTotal = calculatingTotal[0].reduce((acum, val) => acum + val).toFixed(2
   )
 }
 
-export default Header;
+export default Header

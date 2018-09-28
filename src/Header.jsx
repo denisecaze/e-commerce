@@ -31,7 +31,7 @@ const calculatingTotal = this.state.items.map((item) => {
 var finalTotal = calculatingTotal[0].reduce((acum, val) => acum + val).toFixed(2)
 
 } else {
-  finalTotal = 0;
+  finalTotal = 0
 }
 
   return (

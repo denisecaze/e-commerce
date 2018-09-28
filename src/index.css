@@ -144,6 +144,22 @@ button:hover {
   outline: 0;
 }
 
+.cart-modal::-webkit-scrollbar-track {
+  background-color: #5E5E5E;
+  margin-right: 10px;
+}
+
+.cart-modal::-webkit-scrollbar {
+  width: 6px;
+  background: #5E5E5E;
+  margin-right: 10px;
+}
+
+.cart-modal::-webkit-scrollbar-thumb {
+  background: #dad7d7;
+  margin-right: 10px;
+}
+
 .cart-container {
   padding-left: 0;
 }

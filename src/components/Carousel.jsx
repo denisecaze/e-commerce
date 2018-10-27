@@ -1,8 +1,8 @@
 import React from "react"
 import { Carousel } from "react-responsive-carousel"
-import pic1 from "./assets/images/oferta01.png"
-import pic2 from "./assets/images/oferta02.png"
-import pic3 from "./assets/images/oferta03.png"
+import pic1 from "../assets/images/oferta01.png"
+import pic2 from "../assets/images/oferta02.png"
+import pic3 from "../assets/images/oferta03.png"
 
 export default () => (
   <Carousel autoPlay>

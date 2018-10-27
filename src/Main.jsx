@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 import { Route, HashRouter } from "react-router-dom"
-import Home from "./Home"
-import Products from "./Products"
-import Header from "./Header"
+import Home from "./components/Home"
+import Products from "./components/Products"
+import Header from "./components/Header"
 import API from "./utils/api"
 
 class Main extends Component {
-
   constructor (props) {
     super(props);
     this.state = {
@@ -14,16 +13,11 @@ class Main extends Component {
       query: "",
       results: []
     }
-
-    this.handleOpenModal = this.handleOpenModal.bind(this)
-    this.handleCloseModal = this.handleCloseModal.bind(this)
-    this.getInfo = this.getInfo.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   async componentDidMount() {
     const results = await API.getItems()
-    this.setState({results})
+    this.setState({ results })
   }
 
   getInfo = () => {
@@ -36,13 +30,13 @@ class Main extends Component {
         return el.title.toLowerCase().includes(this.state.query.toLowerCase() || !this.state.query)
       })
 
-      this.setState({results: filtered})
+      this.setState({ results: filtered })
     })
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = (event) => {
     this.setState({
-      query: e.target.value
+      query: event.target.value
     }, () => {
       if (this.state.query) {
         this.getInfo()
@@ -50,11 +44,11 @@ class Main extends Component {
     })
   }
 
-  handleOpenModal () {
+  handleOpenModal = () => {
     this.setState({ showModal: true })
   }
   
-  handleCloseModal () {
+  handleCloseModal = () => {
     this.setState({ showModal: false })
   }
 
@@ -62,15 +56,10 @@ class Main extends Component {
     return (
       <HashRouter>
         <div>
-          <Header 
-            handleOpenModal={this.handleOpenModal}
-            showModal={this.state.showModal}
-            handleCloseModal={this.handleCloseModal}
-            handleInputChange={this.handleInputChange}
-          />
+          <Header handleOpenModal={this.handleOpenModal} showModal={this.state.showModal} handleCloseModal={this.handleCloseModal} handleInputChange={this.handleInputChange} />
           <div className="content">
             <Route exact path="/" component={Home} />
-            <Route path="/products" render={(props) => <Products results={this.state.results} />} />
+            <Route path="/products" render={props => <Products results={this.state.results} />} />
           </div>
         </div>
       </HashRouter>

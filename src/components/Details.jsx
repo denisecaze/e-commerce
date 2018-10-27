@@ -1,8 +1,7 @@
-import React from "react"
+import React, { Component } from "react"
 import Modal from "react-modal"
 
-class Details extends React.Component {
-
+class Details extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -13,19 +12,13 @@ class Details extends React.Component {
       totalPrice: 0,
       added: false
     }
-    
-    this.increment = this.increment.bind(this)
-    this.decrement = this.decrement.bind(this)
-    this.send = this.send.bind(this)
-    this.handleOpenModal = this.handleOpenModal.bind(this)
-    this.handleCloseModal = this.handleCloseModal.bind(this)
   }
   
-  handleOpenModal () {
+  handleOpenModal = () => {
     this.setState({ showModal: true })
   }
   
-  handleCloseModal () {
+  handleCloseModal = () => {
     this.setState({ showModal: false })
   }
 
@@ -35,16 +28,16 @@ class Details extends React.Component {
     })
   }
 
-  increment(e) {
-    e.preventDefault()
-    
+  increment = (event) => {
+    event.preventDefault()
+
     this.setState({
       query: Number(this.state.query) + 1
     })
   }
 
-  decrement(e) {
-    e.preventDefault()
+  decrement = (event) => {
+    event.preventDefault()
 
     if (this.state.query <= 1) {
       return this.state.query
@@ -57,7 +50,7 @@ class Details extends React.Component {
     }
   }
 
-  send(e) {
+  send = (event) => {
     this.setState({
       quantity: Number(this.state.quantity) + parseInt(this.state.query),
       totalPrice: ((Number(this.state.quantity) + parseInt(this.state.query)) * this.props.price)
@@ -66,7 +59,7 @@ class Details extends React.Component {
     this.setState({
       added: true
     },
-      function() {
+      () => {
         setTimeout(() => {
           this.setState({
             added: false,
@@ -81,7 +74,7 @@ class Details extends React.Component {
       })
     }
 
-    e.preventDefault()
+    event.preventDefault()
 
     let item = {
       id: this.props.id,
@@ -102,7 +95,9 @@ class Details extends React.Component {
         cart.splice(index, 1)
       }
     })
+
     cart.push(item) 
+
     localStorage.setItem("cart", JSON.stringify(cart)) 
   }
 
@@ -114,7 +109,7 @@ class Details extends React.Component {
           <header>
             <button className="modal-buttons" onClick={this.handleCloseModal}>Close</button>
           </header>
-          <hr/>
+          <hr />
           <div className="details">
             <img className="details-product-image" src={this.props.image} alt="Imagem do produto" />
             <div className="details-description">
@@ -128,10 +123,10 @@ class Details extends React.Component {
                 <input className="quantity" type="number" ref={input => this.search = input} onChange={this.handleInputChange} value={this.state.query}/>
                 <a href="#" className="increment" onClick={this.increment}>+</a>
                 </div>
-                <button className={!this.state.added ? "not-added-button" : "add-button"}  onClick={this.send}>{!this.state.added ? "Adicionar ao carrinho" : "✔ Adicionado"}</button>
+                <button className={!this.state.added ? "not-added-button" : "add-button"} onClick={this.send}>{!this.state.added ? "Adicionar ao carrinho" : "✔ Adicionado"}</button>
               </div>
             </div>
-          <hr/>
+          <hr />
         </Modal>
       </React.Fragment>
     )

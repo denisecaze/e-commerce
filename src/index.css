@@ -246,6 +246,10 @@ button:hover {
   opacity: 0.9;
 }
 
+.product-card-title {
+  word-wrap: break-word;
+}
+
 /* Details Modal*/
 .details {
   display: flex;

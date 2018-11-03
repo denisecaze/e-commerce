@@ -24,7 +24,6 @@ const Header = (props) => {
   this.state = {
     items: JSON.parse(localStorage.getItem("cart")) || [] 
   }
-
   if (this.state.items.length !== 0) {
     let partialTotal = []
     const calculatingTotal = this.state.items.map(item => {
@@ -35,17 +34,16 @@ const Header = (props) => {
   } else {
     finalTotal = 0
   }
-
   return (
     <React.Fragment>
       <h1 className="logo">CLIMBOX</h1>
       <div className="header">
         <ul className="header-links-items">
           <li><NavLink exact to="/">Home</NavLink></li>
-          <li><NavLink to="/products">Products</NavLink></li>
+          <li><NavLink to="/products">Produtos</NavLink></li>
         </ul>
         <div className="header-search-and-cart">
-          <Search to="/search" handleInputChange={props.handleInputChange}/>
+          <Search handleInputChange={props.handleInputChange}/>
           <div className="header-cart-button">
             <button className="cart-button" onMouseEnter={props.handleOpenModal}>
               <FontAwesomeIcon className="cart-icon" icon="shopping-basket" />

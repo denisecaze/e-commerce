@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import Details from "./Details"
 
 class Products extends Component {
-  renderListItem() {
+  renderListItem = () => {
     return this.props.results.map((item, index) => <Product {...item} key={index} />)
   }
-
-  render() {
+  render = () => {
     return (
       <div className="container">
         {this.renderListItem()}

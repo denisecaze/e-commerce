@@ -7,19 +7,17 @@ import API from "./utils/api"
 
 class Main extends Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = {
       showModal: false,
       query: "",
       results: []
     }
   }
-
   async componentDidMount() {
     const results = await API.getItems()
     this.setState({ results })
   }
-
   getInfo = () => {
     fetch(`https://api.mercadolibre.com/sites/MLB/search?q=escalada`)
     .then(results => {
@@ -29,11 +27,9 @@ class Main extends Component {
       const filtered = data.results.filter(el => { 
         return el.title.toLowerCase().includes(this.state.query.toLowerCase() || !this.state.query)
       })
-
       this.setState({ results: filtered })
     })
   }
-
   handleInputChange = (event) => {
     this.setState({
       query: event.target.value
@@ -43,16 +39,13 @@ class Main extends Component {
       } 
     })
   }
-
   handleOpenModal = () => {
     this.setState({ showModal: true })
   }
-  
   handleCloseModal = () => {
     this.setState({ showModal: false })
   }
-
-  render() {
+  render = () => {
     return (
       <HashRouter>
         <div>

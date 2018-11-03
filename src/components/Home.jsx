@@ -3,8 +3,7 @@ import Carousel from "./Carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 class Home extends Component {
-
-  render() {
+  render = () => {
     return (
       <div className="carousel">
         <Carousel/>

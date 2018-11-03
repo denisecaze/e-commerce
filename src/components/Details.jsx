@@ -13,32 +13,25 @@ class Details extends Component {
       added: false
     }
   }
-  
   handleOpenModal = () => {
     this.setState({ showModal: true })
   }
-  
   handleCloseModal = () => {
     this.setState({ showModal: false })
   }
-
   handleInputChange = () => {
     this.setState({
       query: this.search.value
     })
   }
-
   increment = (event) => {
     event.preventDefault()
-
     this.setState({
       query: Number(this.state.query) + 1
     })
   }
-
   decrement = (event) => {
     event.preventDefault()
-
     if (this.state.query <= 1) {
       return this.state.query
     } else {
@@ -49,13 +42,11 @@ class Details extends Component {
       )
     }
   }
-
   send = (event) => {
     this.setState({
       quantity: Number(this.state.quantity) + parseInt(this.state.query),
       totalPrice: ((Number(this.state.quantity) + parseInt(this.state.query)) * this.props.price)
     })
-
     this.setState({
       added: true
     },
@@ -67,15 +58,12 @@ class Details extends Component {
           });
         }, 1500)
       })
-
     if (Number(this.state.quantity) + parseInt(this.state.query) >= 1) {
       this.setState({
         totalItems: 1
       })
     }
-
     event.preventDefault()
-
     let item = {
       id: this.props.id,
       image: this.props.image,
@@ -84,24 +72,19 @@ class Details extends Component {
       quantity: Number(this.state.quantity) + parseInt(this.state.query),
       totalPrice: ((Number(this.state.quantity) + parseInt(this.state.query)) * this.props.price)
     }
-
     if (localStorage.getItem("cart") === null) {
       localStorage.setItem("cart", "[]") 
     }
-
     let cart = JSON.parse(localStorage.getItem("cart"))
     cart.forEach((el, index) => {
       if(el.id === item.id) {
         cart.splice(index, 1)
       }
     })
-
     cart.push(item) 
-
     localStorage.setItem("cart", JSON.stringify(cart)) 
   }
-
-  render () {
+  render = () => {
     return (
       <React.Fragment>
         <button className="modal-buttons" onClick={this.handleOpenModal}>Detalhes</button>
